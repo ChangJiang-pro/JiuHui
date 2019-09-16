@@ -33,9 +33,10 @@
         <a href="${pageContext.request.contextPath}/jsps/member/orzManagement.jsp" class="list-group-item" id="a1"><h5>机构管理</h5></a>
         <a href="${pageContext.request.contextPath}/jsps/member/userManagement.jsp" class="list-group-item" id="a2"><h5>用户管理</h5></a>
         </c:if>
+    <c:if test="${user.level!=0}">
         <a href="${pageContext.request.contextPath}/jsps/member/forecast.jsp" class="list-group-item"><h5>预报数据</h5></a>
         <a href="${pageContext.request.contextPath}/jsps/member/report.jsp" class="list-group-item"><h5>上报数据</h5></a>
-
+    </c:if>
 
 
 </div>

@@ -14,4 +14,8 @@ public interface DataService {
     int addActiveData(ActiveData activeData);
 
     int addPicture(Gallery gallery);
+
+    Integer getId();
+
+    int delForecast(Integer id);
 }

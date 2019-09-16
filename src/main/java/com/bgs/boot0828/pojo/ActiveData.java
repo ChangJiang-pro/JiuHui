@@ -9,6 +9,8 @@ import java.util.Date;
 public class ActiveData {
 
   private Integer id;
+  private String userName;
+  private String planTable;
   private Integer forecastId;
   private Integer actualNum;
   private String newClient;
@@ -23,8 +25,7 @@ public class ActiveData {
   private Date activityTime;
   private long areaId;
   private Integer userId;
-  private String userName;
-  private String planTable;
+
 
   public Integer getId() {
     return id;

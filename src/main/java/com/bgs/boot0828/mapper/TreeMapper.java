@@ -20,5 +20,5 @@ public interface TreeMapper {
 
     int addUser(User user);
 
-    List<ActiveData> findActiveData();
+    List<ActiveData> findActiveData(@Param("id") Integer id);
 }

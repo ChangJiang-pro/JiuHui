@@ -48,7 +48,7 @@ public class TreeServiceImpl implements TreeService {
     }
 
     @Override
-    public List<ActiveData> findActiveData() {
-        return treeMapper.findActiveData();
+    public List<ActiveData> findActiveData(Integer id) {
+        return treeMapper.findActiveData(id);
     }
 }

@@ -132,6 +132,14 @@
     myChart.showLoading();
     charts.push(myChart)
     var username=$("#user_name").val();
+ /*   $.ajax({
+        type: "post",
+        dataType: "json",
+        url: "/manager02/Filine",
+        data:{},
+        processData:false,
+
+    });*/
     $.get('/map/json/province/shandong.json', function (geoJson) {
 
         myChart.hideLoading();
@@ -146,19 +154,6 @@
                 trigger: 'item',
                 formatter: '{b}<br/>{c} (p / km2)'
             },
-           /*
-            附加功能
-            toolbox: {
-                show: true,
-                orient: 'vertical',
-                left: 'right',
-                top: 'center',
-                feature: {
-                    dataView: {readOnly: false},
-                    restore: {},
-                    saveAsImage: {}
-                }
-            },*/
             visualMap: {
                   min: 800,
                   max: 50000,
@@ -181,17 +176,7 @@
                         emphasis:{label:{show:true}}
                     },
                 data:[
-                    {name: '潍坊市', value: 20057.34},
-                    {name: '泰安市', value: 15477.48},
-                    {name: '青岛市', value: 15477.48},
-                    {name: '济南市', value: 6992.6},
-                    {name: '淄博市', value: 44045.49},
-                    {name: '德州市', value: 40689.64},
-                    {name: '聊城市', value: 37659.78},
-                    {name: '烟台市', value: 45180.97},
-                    {name: '威海市', value: 55204.26},
-                    {name: '东营市', value: 21900.9},
-                    {name: '滨州市', value: 4918.26},
+                    {name: '潍坊市', value: 50000}
                 ],},
                 {
                     name: '访问来源',
@@ -199,11 +184,7 @@
                     radius : '35%',
                     center: ['80%', '30%'],
                     data:[
-                        {value:20057, name:'潍坊'},
-                        {value:15477, name:'青岛'},
-                        {value:234, name:'济南'},
-                        {value:15477, name:'泰安'},
-                        {value:45180, name:'烟台'}
+                        {value:50000, name:'潍坊'}
                     ],
                     itemStyle: {
                         emphasis: {
@@ -245,6 +226,7 @@
         },
         series : [
             {
+
                 name: '访问来源',
                 type: 'pie',
                 radius : '55%',

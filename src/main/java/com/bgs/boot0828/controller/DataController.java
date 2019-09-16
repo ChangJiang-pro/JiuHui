@@ -5,6 +5,9 @@ import com.bgs.boot0828.pojo.Forecast;
 import com.bgs.boot0828.pojo.Gallery;
 import com.bgs.boot0828.pojo.User;
 import com.bgs.boot0828.service.DataService;
+import com.bgs.boot0828.service.TreeService;
+import com.bgs.boot0828.utils.TemplateExcelUtil;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -15,15 +18,17 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 @RequestMapping("data")
 public class DataController {
     @Autowired
     private DataService dataService;
+    @Autowired
+    private TreeService treeService;
+
     @Value("${path}")
     private String path;
 
@@ -68,6 +73,7 @@ public class DataController {
             //把图片写入磁盘中
             goodsImg.transferTo(temp);
             int i = dataService.addPicture(gallery);
+            //int j=dataService.delForecast(dataService.getId());
             if (i > 0) {
                 map.put("state", true);
                 map.put("Image", fileName);
@@ -78,5 +84,47 @@ public class DataController {
             map.put("state", false);
         }
         return map;
+    }
+
+//    导出
+   @RequestMapping("outPoi")
+    @ResponseBody
+    public Boolean outPoi(HttpSession session,String type,Integer limit,Integer offset) {
+        boolean falg=true;
+        String temp="dataTemp.xlsx";
+        temp=session.getServletContext().getRealPath("/tempPlent")+File.separator+temp;
+        String target="E:"+File.separator+"image"+File.separator+System.currentTimeMillis()+".xlsx";
+        User user=(User)session.getAttribute("user");
+        List<ActiveData> list=treeService.findActiveData(user.getId());
+
+
+        //params
+        String[] params=new String[2];
+        params[0]=user.getName();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        params[1]=sdf.format(new Date());
+        //list
+        List<String> tlist=titleList();
+        try {
+            new TemplateExcelUtil().exportExcel(temp, target, params, tlist, list);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return false;
+        }
+
+        return falg;
+    }
+    //获取字段
+    public List<String> titleList(){
+        List<String> list=new ArrayList<>();
+        list.add("userName");
+        list.add("planTable");
+        list.add("actualNum");
+        list.add("newClient");
+        list.add("oldClient");
+        list.add("potentialClient");
+        list.add("money");
+        return list;
     }
 }

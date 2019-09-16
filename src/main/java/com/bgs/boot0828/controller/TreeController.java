@@ -62,7 +62,8 @@ public class TreeController {
 
     @RequestMapping("findActiveData")
     @ResponseBody
-    public List<ActiveData> findActiveData(){
-        return treeService.findActiveData();
+    public List<ActiveData> findActiveData(HttpSession session){
+        User user=(User)session.getAttribute("user");
+        return treeService.findActiveData(user.getId());
     }
 }

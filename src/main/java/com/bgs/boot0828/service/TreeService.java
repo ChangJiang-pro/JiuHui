@@ -19,5 +19,5 @@ public interface TreeService {
 
     int addUser(User user);
 
-    List<ActiveData> findActiveData();
+    List<ActiveData> findActiveData(Integer id);
 }

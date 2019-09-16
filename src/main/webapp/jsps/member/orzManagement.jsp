@@ -27,15 +27,13 @@
                 </div>
                 <div class="panel-body">
                     <from class="form-horizontal" >
-                        <div class="form-group">
+                        <%--<div class="form-group">
                             <label class="col-sm-2 control-label">导入市级机构数据：</label>
-                            <input type="file" id="inpoi">
-                            <input type="submit" value="确定导入">
-                        </div>
+                            <input type="button" value="确定导入">
+                        </div>--%>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">导入县级机构数据：</label>
-                            <input type="file" id="outpoi">
-                            <input type="submit" value="确定导出">
+                            <label class="col-sm-2 control-label">导出上报数据列表：</label>
+                            <input type="button" id="out_btn" class="btn btn-primary" value="确定导出">
                         </div>
                     </from>
                         <div class="col-sm-3 column">
@@ -82,6 +80,7 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
                 <input type="button" value="提交"  id="sb1" class="btn btn-primary">
+                <a href="javascript:aaa()"></a>
             </div>
         </div>
     </div>
@@ -239,6 +238,17 @@
     function initTree(){
         $.fn.zTree.init($("#treeDemo"), setting,zNodes);//初始化树
     }
-
+    //导出列表
+    $("#out_btn").click(function () {
+        $.ajax({
+            url:'${pageContext.request.contextPath}/data/outPoi',
+            type:'post',
+            data:{},
+            dataType:'json',
+            success:function(data){
+                alert("导出成功！")
+            }
+        });
+    })
 </script>
 </html>

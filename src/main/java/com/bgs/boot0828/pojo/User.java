@@ -3,7 +3,7 @@ package com.bgs.boot0828.pojo;
 
 public class User {
 
-  private long id;
+  private Integer id;
   private String usercode;
   private String name;
   private Integer pId;
@@ -11,11 +11,11 @@ public class User {
   private String password;
 
 
-  public long getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 

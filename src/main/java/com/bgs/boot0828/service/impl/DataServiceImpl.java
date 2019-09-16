@@ -34,4 +34,14 @@ public class DataServiceImpl implements DataService {
     public int addPicture(Gallery gallery) {
         return dataMapper.addPicture(gallery);
     }
+
+    @Override
+    public Integer getId() {
+        return dataMapper.getId();
+    }
+
+    @Override
+    public int delForecast(Integer id) {
+        return dataMapper.delForecast(id);
+    }
 }

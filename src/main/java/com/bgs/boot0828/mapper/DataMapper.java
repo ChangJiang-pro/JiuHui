@@ -14,4 +14,8 @@ public interface DataMapper {
     int addActiveData(ActiveData activeData);
 
     int addPicture(Gallery gallery);
+
+    Integer delForecast(Integer id);
+
+    Integer getId();
 }

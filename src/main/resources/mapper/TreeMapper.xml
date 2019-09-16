@@ -25,8 +25,12 @@
         insert into tb_user (name,usercode,pId,password) values (#{name},#{usercode},#{pId},#{password})
     </insert>
     <select id="findActiveData" resultType="activeData">
-        select ta.*,tu.name userName,tf.plan_table planTable from tb_activedata ta,tb_forecast tf,tb_user tu
+        select tu.name userName,tf.plan_table planTable,ta.* from tb_activedata ta,tb_forecast tf,tb_user tu
         where ta.user_id=tu.id
         and ta.forecast_id=tf.id
+        <if test="id!=1">
+            and ta.user_id=#{id}
+        </if>
     </select>
+
 </mapper>

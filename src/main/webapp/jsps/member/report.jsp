@@ -22,7 +22,9 @@
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <table id="plan_tab"></table>
+                    <div id="report_div">
+                        <table id="plan_tab"></table>
+                    </div>
                     <%--<c:if test="${}">
                     </c:if>--%>
                 </div>
@@ -33,6 +35,7 @@
 </body>
 <script>
     $(function(){
+        $("#report_div").show();
         $("#plan_tab").bootstrapTable({
             url:'${pageContext.request.contextPath}/data/findPlanAll',
             method:'post',//提交方式
